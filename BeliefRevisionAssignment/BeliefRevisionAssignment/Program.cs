@@ -59,6 +59,12 @@ namespace BeliefRevisionAssignment
             //}
 
             Console.WriteLine(Bbase.entails(c5));
+            
+            Console.WriteLine(Bbase.ToString());
+            Bbase.Contract(q);
+            Bbase.Contract(B);
+            Bbase.Contract(notB);
+            Console.WriteLine(Bbase.ToString());
             //Console.WriteLine(Bbase.entails(InputClause));
 
 

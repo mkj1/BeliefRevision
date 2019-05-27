@@ -8,7 +8,7 @@ namespace BeliefRevisionAssignment
 {
     class Clause
     {
-        private List<Literal> literals;
+        public List<Literal> literals;
 
         public Clause()
         {

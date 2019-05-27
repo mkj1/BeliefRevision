@@ -20,52 +20,93 @@ namespace BeliefRevisionAssignment
             clauses.Add(c);
         }
 
-
-
-       /* public Boolean entails(Clause c)
-        {
-            List<Clause> eClauses = new List<Clause>();
-            eClauses.AddRange(clauses);
-            eClauses.Add(c);
-
-            List<Clause> resolvents = new List<Clause>();
-            List<Clause> newClauses = new List<Clause>();
-
-            while (true)
+        public void Contract(Literal l) {
+            foreach(var c in clauses)
             {
-                //For each pair of clauses that is not the same
-                foreach(Clause clause1 in eClauses.ToList())
+                foreach(var li in c.literals)
                 {
-                    foreach(Clause clause2 in eClauses.ToList())
-                    {
-                        if (!clause1.isEqual(clause2)){
-                            //Add resolvents
-                            resolvents.AddRange(resolve(clause1, clause2));
-
-                            //Return true if it contains a clause with no literals
-                            foreach(Clause clause in resolvents)
-                            {
-                                clause.printClause();
-                                if (!clause.getLiterals().Any())
-                                {
-                                    return true;
-                                }
-                            }
-
-                            newClauses.AddRange(resolvents);
-
-                            //If newCluases is a subset of eClauses return false
-                            if (!newClauses.Except(eClauses).Any()) return false;
-
-                            eClauses.AddRange(newClauses);
-
-                        }
-
+                    if (l.isEqual(li)){
+                        c.literals.Remove(li);
+                        break;
                     }
                 }
             }
+        }
 
-        }*/
+        public override string ToString()
+        {
+            var s = "Beliefbase:\n";
+
+            foreach(var c in clauses)
+            {
+                String printValue = "";
+                foreach (Literal l in c.getLiterals())
+                {
+                    if (l.getExists())
+                    {
+                        printValue += l.getName() + " v ";
+                    }
+                    else
+                    {
+                        printValue += "!" + l.getName() + " v ";
+                    }
+                }
+                if (printValue.Length > 3)
+                {
+                    printValue = printValue.Substring(0, printValue.Length - 3);
+                }
+
+                s = s+ printValue + "\n";
+            }
+            return s;
+        }
+
+
+
+        /* public Boolean entails(Clause c)
+         {
+             List<Clause> eClauses = new List<Clause>();
+             eClauses.AddRange(clauses);
+             eClauses.Add(c);
+
+             List<Clause> resolvents = new List<Clause>();
+             List<Clause> newClauses = new List<Clause>();
+
+             while (true)
+             {
+                 //For each pair of clauses that is not the same
+                 foreach(Clause clause1 in eClauses.ToList())
+                 {
+                     foreach(Clause clause2 in eClauses.ToList())
+                     {
+                         if (!clause1.isEqual(clause2)){
+                             //Add resolvents
+                             resolvents.AddRange(resolve(clause1, clause2));
+
+                             //Return true if it contains a clause with no literals
+                             foreach(Clause clause in resolvents)
+                             {
+                                 clause.printClause();
+                                 if (!clause.getLiterals().Any())
+                                 {
+                                     return true;
+                                 }
+                             }
+
+                             newClauses.AddRange(resolvents);
+
+                             //If newCluases is a subset of eClauses return false
+                             if (!newClauses.Except(eClauses).Any()) return false;
+
+                             eClauses.AddRange(newClauses);
+
+                         }
+
+                     }
+                 }
+             }
+
+         }*/
 
 
         public Boolean entails(Clause c)

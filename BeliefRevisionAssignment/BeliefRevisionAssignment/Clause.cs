@@ -60,5 +60,27 @@ namespace BeliefRevisionAssignment
             
             Console.WriteLine(printValue);
         }
+
+        public override string ToString()
+        {
+            String printValue = "";
+            foreach (Literal l in literals)
+            {
+                if (l.getExists())
+                {
+                    printValue += l.getName() + " v ";
+                }
+                else
+                {
+                    printValue += "!" + l.getName() + " v ";
+                }
+            }
+            if (printValue.Length > 3)
+            {
+                printValue = printValue.Substring(0, printValue.Length - 3);
+            }
+
+            return printValue;
+        }
     }
 }

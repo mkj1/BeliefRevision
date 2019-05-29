@@ -35,7 +35,7 @@ namespace BeliefRevisionAssignment
 
         public override string ToString()
         {
-            var s = "Beliefbase:\n";
+            var s = "";
 
             foreach(var c in clauses)
             {

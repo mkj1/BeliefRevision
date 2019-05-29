@@ -57,13 +57,18 @@ namespace BeliefRevisionAssignment
             //{
             //    InputClause.addLiteral(l);
             //}
-
-            Console.WriteLine(Bbase.entails(c5));
-            
+            Console.WriteLine("Initial belief base:");
             Console.WriteLine(Bbase.ToString());
+
+            Console.WriteLine("Calculating entailment for " + c5.ToString());
+            Console.WriteLine("Entails? " + Bbase.entails(c5));
+            Console.WriteLine();
+
+            Console.WriteLine("Contracting " + q.ToString() +"," + notB.ToString() +  "from belief base...");
             Bbase.Contract(q);
-            Bbase.Contract(B);
             Bbase.Contract(notB);
+
+            Console.WriteLine("Resulting belief base:");
             Console.WriteLine(Bbase.ToString());
             //Console.WriteLine(Bbase.entails(InputClause));
 
